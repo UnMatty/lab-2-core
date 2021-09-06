@@ -29,8 +29,10 @@ public class SimpleAppTest {
 	@Test
 	public void testInitPerson() {
 		UsualPerson person = (UsualPerson) context.getBean("person");
+		assertEquals(expectedPerson, person);
+		System.out.println(person);
 //		FYI: Another way to achieve the bean
-//		person = context.getBean(UsualPerson.class);
+		person = context.getBean(UsualPerson.class);
 		assertEquals(expectedPerson, person);
 		System.out.println(person);
 	}
@@ -56,5 +58,16 @@ public class SimpleAppTest {
 		person.setContacts(contacts);
 
 		return person;
+	}
+
+	/*
+		Some useless test method
+	 */
+	@Test
+	public void sayHelloTestMethod() {
+		UsualPerson person = context.getBean("person", UsualPerson.class);
+		person.sayHello(expectedPerson);
+		// check if this method change something important
+		assertEquals(person, expectedPerson);
 	}
 }
