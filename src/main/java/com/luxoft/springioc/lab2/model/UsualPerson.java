@@ -1,5 +1,7 @@
 package com.luxoft.springioc.lab2.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
 public class UsualPerson implements Person {
@@ -36,12 +38,14 @@ public class UsualPerson implements Person {
     }
 
     public void sayHello(Person person) {
+        System.out.println("Hello to " + person.getName());
     }
 
     public Country getCountry() {
         return country;
     }
 
+    @Autowired
     public void setCountry(Country country) {
         this.country = country;
     }
@@ -71,19 +75,19 @@ public class UsualPerson implements Person {
     }
 
     public String toString() {
-        String s = "Name: " + name + "\n"
+        StringBuilder s = new StringBuilder("Name: " + name + "\n"
                 + "Age: " + age + "\n"
                 + "Height: " + height + "\n"
                 + "Country: " + country + "\n"
-                + "Is Programmer?: " + isProgrammer + "\n";
+                + "Is Programmer?: " + isProgrammer + "\n");
         if ((contacts != null) && (!contacts.isEmpty())) {
-            s += "Contacts: ";
+            s.append("Contacts: ");
             for (String contact : contacts) {
-                s += contact + ", ";
+                s.append(contact).append(", ");
             }
-            s += "\n";
+            s.append("\n");
         }
-        return s;
+        return s.toString();
     }
 
     public boolean equals(Object o) {
